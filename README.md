@@ -23,6 +23,16 @@ Via `cdn`:
 
 ```
 
+add in your project a `.npmrc` file:
+
+````bash
+#.npmrc
+
+@lekodeveloperweb=registry=https://npm.pkg.github.com
+
+````
+
+
 ```typescript
 
 import {ReadAloudAPI} from '@lekodeveloperweb/read-aloud-browser';
