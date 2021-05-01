@@ -1,6 +1,6 @@
 export class ReadAloudApi {
-  private voices: SpeechSynthesisVoice[];
-  private selectedVoice: SpeechSynthesisVoice | null;
+  public voices: SpeechSynthesisVoice[];
+  private _selectedVoice: SpeechSynthesisVoice | null;
   private utterance: SpeechSynthesisUtterance | null;
   constructor() {
     if (!this.isSupported()) {
@@ -12,21 +12,25 @@ export class ReadAloudApi {
     window.onload = () => this.populateVoiceList();
   }
 
-  isChrome() {
+  public isChrominiumBased() {
     const chrome = /chrome/i.test(navigator.userAgent);
     const edge = /edge/i.test(navigator.userAgent);
     return chrome && !edge;
   }
 
-  isSupported() {
+  public isSupported() {
     return "speechSynthesis" in window;
   }
 
-  selectVoice(voice: SpeechSynthesisVoice) {
-    this.selectedVoice = voice;
+  public get selectedVoice(): SpeechSynthesisVoice | null {
+    return this._selectedVoice;
   }
 
-  speak(
+  public set selectVoice(voice: SpeechSynthesisVoice) {
+    this._selectedVoice = voice;
+  }
+
+  public speak(
     sentence: string,
     voice: SpeechSynthesisVoice,
     onStart?: (ev: SpeechSynthesisEvent) => void,
@@ -59,28 +63,31 @@ export class ReadAloudApi {
     speechSynthesis.speak(this.utterance);
   }
 
-  populateVoiceList() {
-    let id: any;
-    let count = 1;
-    id = setInterval(() => {
-      console.log("call interval");
-      count++;
-      const voices = window.speechSynthesis.getVoices();
-      if (voices.length !== 0) {
-        for (let i = 0; i < voices.length; i++) {
-          const voice = voices[i];
-          if (!voice) {
-            return;
+  public populateVoiceList(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      let id: any;
+      let count = 1;
+      id = setInterval(() => {
+        console.log("call interval");
+        count++;
+        const voices = window.speechSynthesis.getVoices();
+        if (voices.length !== 0) {
+          for (let i = 0; i < voices.length; i++) {
+            const voice = voices[i];
+            if (!voice) {
+              continue;
+            }
+            this.voices.push(voice);
           }
-          this.voices.push(voice);
+          clearInterval(id);
+          resolve();
         }
-        clearInterval(id);
-      }
-      if (count >= 100) {
-        clearInterval(id);
-        throw new Error("load voices timeout");
-      }
-    }, 10);
+        if (count >= 100) {
+          clearInterval(id);
+          reject("load voices timeout");
+        }
+      }, 10);
+    });
   }
 }
 
