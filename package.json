@@ -14,7 +14,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/lekodeveloperweb/read-aloud.git"
+        "url": "git+https://github.com/lekodeveloperweb/read-aloud-browser.git"
     },
     "keywords": [
         "typescript",
@@ -30,9 +30,9 @@
     },
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/lekodeveloperweb/read-aloud/issues"
+        "url": "https://github.com/lekodeveloperweb/read-aloud-browser/issues"
     },
-    "homepage": "https://github.com/lekodeveloperweb/read-aloud#readme",
+    "homepage": "https://github.com/lekodeveloperweb/read-aloud-browser#readme",
     "devDependencies": {
         "@types/jest": "^26.0.22",
         "@typescript-eslint/eslint-plugin": "^4.22.0",
