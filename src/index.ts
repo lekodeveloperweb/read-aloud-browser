@@ -4,7 +4,7 @@ export class ReadAloudApi {
     private _utterance: SpeechSynthesisUtterance | null
     constructor() {
         if (!this.isSupported()) {
-            throw new Error('Syntheses API is not supported in this browser')
+            throw new Error('SpeechSynthesis API is not supported in this browser')
         }
         this.voices = []
         this._utterance = null
@@ -18,7 +18,7 @@ export class ReadAloudApi {
         return chrome && !edge
     }
 
-    public isSupported(): boolean {
+    private isSupported(): boolean {
         return 'speechSynthesis' in window
     }
 
