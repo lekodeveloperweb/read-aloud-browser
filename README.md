@@ -6,6 +6,15 @@ See compatibility [here]("https://developer.mozilla.org/en-US/docs/Web/API/Speec
 
 ## Usage
 
+add in your project a `.npmrc` file:
+
+````bash
+#.npmrc
+
+@lekodeveloperweb=registry=https://npm.pkg.github.com
+
+````
+
 As a `npm` dependency:
 
 ```bash
@@ -22,16 +31,6 @@ Via `cdn`:
 <script src="unpkg.com/@lekodeveloperweb/read-aloud-browser@1.0.0/index.js"></script>
 
 ```
-
-add in your project a `.npmrc` file:
-
-````bash
-#.npmrc
-
-@lekodeveloperweb=registry=https://npm.pkg.github.com
-
-````
-
 
 ```typescript
 
