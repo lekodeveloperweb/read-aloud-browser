@@ -25,7 +25,7 @@ describe('index.test.ts', () => {
             addEventListener: jest.fn(),
         }))
         API = new (window as any).ReadAloudApi()
-        API.isChrominiumBased = jest.fn(() => true)
+        API.isChromiumBased = jest.fn(() => true)
         API.isSupported = jest.fn(() => true)
         API.voices = voices
         API.populateVoiceList = jest.fn()

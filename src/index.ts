@@ -12,7 +12,7 @@ export class ReadAloudApi {
         window.onload = () => this.populateVoiceList()
     }
 
-    public isChrominiumBased(): boolean {
+    public isChromiumBased(): boolean {
         const chrome = /chrome/i.test(navigator.userAgent)
         const edge = /edge/i.test(navigator.userAgent)
         return chrome && !edge
